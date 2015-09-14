@@ -2,9 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'checkstyle'
 
-group = 'com.viewpagerindicator'
+group = 'com.lisb.android.viewpagerindicator'
 archivesBaseName = 'viewpagerindicator'
-version = '2.4.2-lisb-1'
+version = '2.4.3-SNAPSHOT'
 
 android {
     compileSdkVersion 22
