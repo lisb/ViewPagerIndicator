@@ -4,7 +4,7 @@ apply plugin: 'checkstyle'
 
 group = 'com.lisb.android.viewpagerindicator'
 archivesBaseName = 'viewpagerindicator'
-version = '2.4.3-SNAPSHOT'
+version = '2.4.3'
 
 android {
     compileSdkVersion 23
