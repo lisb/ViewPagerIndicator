@@ -1,9 +1,8 @@
 package com.viewpagerindicator.sample;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.widget.Toast;
-import com.viewpagerindicator.CirclePageIndicator;
 
 public class SampleCirclesWithListener extends BaseSampleActivity {
     @Override
@@ -13,10 +12,10 @@ public class SampleCirclesWithListener extends BaseSampleActivity {
 
         mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
 
-        mPager = (ViewPager)findViewById(R.id.pager);
+        mPager = findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
-        mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
+        mIndicator = findViewById(R.id.indicator);
         mIndicator.setViewPager(mPager);
 
         //We set this on the indicator, NOT the pager

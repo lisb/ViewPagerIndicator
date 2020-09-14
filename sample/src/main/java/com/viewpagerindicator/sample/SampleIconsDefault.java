@@ -1,8 +1,6 @@
 package com.viewpagerindicator.sample;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import com.viewpagerindicator.IconPageIndicator;
 
 public class SampleIconsDefault extends BaseSampleActivity {
     @Override
@@ -12,10 +10,10 @@ public class SampleIconsDefault extends BaseSampleActivity {
 
         mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
 
-        mPager = (ViewPager)findViewById(R.id.pager);
+        mPager = findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
-        mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
+        mIndicator = findViewById(R.id.indicator);
         mIndicator.setViewPager(mPager);
     }
 }

@@ -2,23 +2,23 @@ apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion android_compile_sdk_version
+    buildToolsVersion android_build_tools_version
 
     defaultConfig {
         applicationId "com.viewpagerindicator.sample"
-        minSdkVersion 11
-        targetSdkVersion 16
+        minSdkVersion android_min_sdk_version
+        targetSdkVersion android_target_sdk_version
         versionCode 65
-        versionName "2.4.1"
+        versionName "2.4.2"
     }
 }
 
 dependencies {
-    compile project(':library')
+    implementation project(':library')
+    implementation "androidx.fragment:fragment:1.2.5"
 }
 
 checkstyle {
     configFile = new File(rootDir, 'checkstyle.xml')
 }
-

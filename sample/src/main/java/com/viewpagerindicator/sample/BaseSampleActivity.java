@@ -1,11 +1,9 @@
 package com.viewpagerindicator.sample;
 
 import java.util.Random;
-
 import com.viewpagerindicator.PageIndicator;
-
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -28,7 +26,7 @@ public abstract class BaseSampleActivity extends FragmentActivity {
         switch (item.getItemId()) {
             case R.id.random:
                 final int page = RANDOM.nextInt(mAdapter.getCount());
-                Toast.makeText(this, "Changing to page " + page, Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Changing to page " + page, Toast.LENGTH_SHORT).show();
                 mPager.setCurrentItem(page);
                 return true;
 

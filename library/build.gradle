@@ -1,38 +1,46 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 apply plugin: 'checkstyle'
 
-group = 'com.lisb.android.viewpagerindicator'
-archivesBaseName = 'viewpagerindicator'
-version = '2.4.3'
-
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion android_compile_sdk_version
+    buildToolsVersion android_build_tools_version
 
     defaultConfig {
-        minSdkVersion 4
-        targetSdkVersion 22
-
-        versionCode 65
-        versionName version
+        minSdkVersion android_min_sdk_version
+        targetSdkVersion android_target_sdk_version
+        versionCode 1
+        versionName "1.0"
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:22.2.1'
+    api "androidx.viewpager:viewpager:1.0.0"
 }
 
 checkstyle {
     configFile = new File(rootDir, 'checkstyle.xml')
 }
 
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.source
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = "https://maven.pkg.github.com/lisb/ViewPagerIndicator"
+                credentials {
+                    username = gpr_user
+                    password = gpr_password
+                }
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.lisb.android.viewpagerindicator'
+                artifactId = 'viewpagerindicator'
+                version = '2.4.4'
+            }
+        }
+    }
 }
-
-artifacts {
-   archives androidSourcesJar
-}
-

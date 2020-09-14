@@ -1,7 +1,6 @@
 package com.viewpagerindicator.sample;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
 import com.viewpagerindicator.TitlePageIndicator;
@@ -16,10 +15,10 @@ public class SampleTitlesCenterClickListener extends BaseSampleActivity implemen
 
         mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
 
-        mPager = (ViewPager)findViewById(R.id.pager);
+        mPager = findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
-        TitlePageIndicator indicator = (TitlePageIndicator)findViewById(R.id.indicator);
+        TitlePageIndicator indicator = findViewById(R.id.indicator);
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Underline);
         indicator.setOnCenterItemClickListener(this);
