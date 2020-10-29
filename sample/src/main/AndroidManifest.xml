@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.viewpagerindicator.sample">
+    package="com.lisb.viewpageindicator3.sample">
 
     <application
         android:label="ViewPagerIndicator Sample"
         android:icon="@drawable/icon">
 
         <activity
-            android:name=".ListSamples"
+            android:name="com.lisb.viewpageindicator3.sample.ListSamples"
             android:label="ViewPager Indicator">
 
             <intent-filter>
@@ -20,7 +20,7 @@
 
         <!-- CIRCLE INDICATOR -->
         <activity
-            android:name=".SampleCirclesDefault"
+            android:name="com.lisb.viewpageindicator3.sample.SampleCirclesDefault"
             android:label="Circles/Default">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleCirclesInitialPage"
+            android:name="com.lisb.viewpageindicator3.sample.SampleCirclesInitialPage"
             android:label="Circles/Initial Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleCirclesSnap"
+            android:name="com.lisb.viewpageindicator3.sample.SampleCirclesSnap"
             android:label="Circles/Snap">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleCirclesStyledLayout"
+            android:name="com.lisb.viewpageindicator3.sample.SampleCirclesStyledLayout"
             android:label="Circles/Styled (via layout)"
             android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -53,7 +53,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleCirclesStyledMethods"
+            android:name="com.lisb.viewpageindicator3.sample.SampleCirclesStyledMethods"
             android:label="Circles/Styled (via methods)"
             android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -62,7 +62,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleCirclesStyledTheme"
+            android:name="com.lisb.viewpageindicator3.sample.SampleCirclesStyledTheme"
             android:label="Circles/Styled (via theme)"
             android:theme="@style/StyledIndicators">
             <intent-filter>
@@ -71,7 +71,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleCirclesWithListener"
+            android:name="com.lisb.viewpageindicator3.sample.SampleCirclesWithListener"
             android:label="Circles/With Listener">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -83,7 +83,7 @@
 
         <!-- ICON INDICATOR -->
         <activity
-            android:name=".SampleIconsDefault"
+            android:name="com.lisb.viewpageindicator3.sample.SampleIconsDefault"
             android:label="Icons/Default">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,7 +96,7 @@
 
         <!-- LINE INDICATOR -->
         <activity
-                android:name=".SampleLinesDefault"
+                android:name="com.lisb.viewpageindicator3.sample.SampleLinesDefault"
                 android:label="Lines/Default">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -104,7 +104,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".SampleLinesStyledLayout"
+                android:name="com.lisb.viewpageindicator3.sample.SampleLinesStyledLayout"
                 android:label="Lines/Styled (via layout)"
                 android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -113,7 +113,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".SampleLinesStyledMethods"
+                android:name="com.lisb.viewpageindicator3.sample.SampleLinesStyledMethods"
                 android:label="Lines/Styled (via methods)"
                 android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -122,7 +122,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".SampleLinesStyledTheme"
+                android:name="com.lisb.viewpageindicator3.sample.SampleLinesStyledTheme"
                 android:label="Lines/Styled (via theme)"
                 android:theme="@style/StyledIndicators">
             <intent-filter>
@@ -135,7 +135,7 @@
 
         <!-- TITLE INDICATOR -->
         <activity
-            android:name=".SampleTitlesBottom"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesBottom"
             android:label="Titles/Default (Bottom)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -143,7 +143,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesCenterClickListener"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesCenterClickListener"
             android:label="Titles/Center Click Listener">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -151,7 +151,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesDefault"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesDefault"
             android:label="Titles/Default">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -159,7 +159,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesInitialPage"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesInitialPage"
             android:label="Titles/Initial Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -167,7 +167,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesStyledLayout"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesStyledLayout"
             android:label="Titles/Styled (via layout)"
             android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -176,7 +176,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesStyledMethods"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesStyledMethods"
             android:label="Titles/Styled (via methods)"
             android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -185,7 +185,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesStyledTheme"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesStyledTheme"
             android:label="Titles/Styled (via theme)"
             android:theme="@style/StyledIndicators">
             <intent-filter>
@@ -194,7 +194,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesTriangle"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesTriangle"
             android:label="Titles/Triangle Style">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -202,7 +202,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTitlesWithListener"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTitlesWithListener"
             android:label="Titles/With Listener">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -214,7 +214,7 @@
 
         <!-- TAB INDICATOR -->
         <activity
-            android:name=".SampleTabsDefault"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTabsDefault"
             android:label="Tabs/Default"
             android:theme="@style/Theme.PageIndicatorDefaults">
             <intent-filter>
@@ -223,7 +223,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SampleTabsStyled"
+            android:name="com.lisb.viewpageindicator3.sample.SampleTabsStyled"
             android:label="Tabs/Styled"
             android:theme="@style/StyledIndicators">
             <intent-filter>
@@ -232,7 +232,7 @@
             </intent-filter>
         </activity>
       <activity
-          android:name=".SampleTabsWithIcons"
+          android:name="com.lisb.viewpageindicator3.sample.SampleTabsWithIcons"
           android:label="Tabs/With Icons"
           android:theme="@style/StyledIndicators">
         <intent-filter>
@@ -245,7 +245,7 @@
 
         <!-- UNDERLINE INDICATOR -->
         <activity
-                android:name=".SampleUnderlinesDefault"
+                android:name="com.lisb.viewpageindicator3.sample.SampleUnderlinesDefault"
                 android:label="Underlines/Default">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -253,7 +253,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".SampleUnderlinesNoFade"
+                android:name="com.lisb.viewpageindicator3.sample.SampleUnderlinesNoFade"
                 android:label="Underlines/No Fade">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -261,7 +261,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".SampleUnderlinesStyledLayout"
+                android:name="com.lisb.viewpageindicator3.sample.SampleUnderlinesStyledLayout"
                 android:label="Underlines/Styled (via layout)"
                 android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -270,7 +270,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".SampleUnderlinesStyledMethods"
+                android:name="com.lisb.viewpageindicator3.sample.SampleUnderlinesStyledMethods"
                 android:label="Underlines/Styled (via methods)"
                 android:theme="@android:style/Theme.Light">
             <intent-filter>
@@ -279,7 +279,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".SampleUnderlinesStyledTheme"
+                android:name="com.lisb.viewpageindicator3.sample.SampleUnderlinesStyledTheme"
                 android:label="Underlines/Styled (via theme)"
                 android:theme="@style/StyledIndicators">
             <intent-filter>

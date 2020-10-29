@@ -6,11 +6,11 @@ android {
     buildToolsVersion android_build_tools_version
 
     defaultConfig {
-        applicationId "com.viewpagerindicator.sample"
+        applicationId "com.lisb.viewpagerindicator3.sample"
         minSdkVersion android_min_sdk_version
         targetSdkVersion android_target_sdk_version
-        versionCode 65
-        versionName "2.4.2"
+        versionCode 1
+        versionName "3.0.0-SNAPSHOT"
     }
 }
 
