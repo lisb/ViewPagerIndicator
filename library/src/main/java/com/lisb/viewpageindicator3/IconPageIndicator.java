@@ -16,14 +16,7 @@
  */
 package com.lisb.viewpageindicator3;
 
-import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import android.content.Context;
-import androidx.core.view.MotionEventCompat;
-import androidx.core.view.ViewConfigurationCompat;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -31,6 +24,14 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewConfigurationCompat;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * This widget implements the dynamic action bar tab behavior that can change
@@ -43,7 +44,6 @@ public class IconPageIndicator extends FrameLayout implements PageIndicator {
 
     private ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mListener;
-    private Runnable mIconSelector;
     private int mSelectedIndex;
 
     private int mTouchSlop;
@@ -64,23 +64,6 @@ public class IconPageIndicator extends FrameLayout implements PageIndicator {
 
         final ViewConfiguration configuration = ViewConfiguration.get(context);
         mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration);
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (mIconSelector != null) {
-            // Re-post the selector we saved
-            post(mIconSelector);
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (mIconSelector != null) {
-            removeCallbacks(mIconSelector);
-        }
     }
 
     @Override
