@@ -15,14 +15,14 @@
 -->
 
 <resources>
-    <style name="Theme.PageIndicatorDefaults" parent="android:Theme">
-        <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
+    <style name="Theme.PageIndicatorDefaults3" parent="android:Theme">
+        <item name="vpiIconPageIndicatorStyle3">@style/Widget.IconPageIndicator3</item>
     </style>
 
     <style name="Widget">
     </style>
 
-    <style name="Widget.IconPageIndicator" parent="Widget">
+    <style name="Widget.IconPageIndicator3" parent="Widget">
         <item name="android:layout_marginLeft">6dp</item>
         <item name="android:layout_marginRight">6dp</item>
     </style>

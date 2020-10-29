@@ -18,7 +18,7 @@
 <resources>
     <declare-styleable name="ViewPagerIndicator">
         <!-- Style of the icon indicator's views. -->
-        <attr name="vpiIconPageIndicatorStyle" format="reference"/>
+        <attr name="vpiIconPageIndicatorStyle3" format="reference"/>
     </declare-styleable>
 
     <attr name="centered" format="boolean" />

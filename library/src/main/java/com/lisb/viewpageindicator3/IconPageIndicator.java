@@ -59,7 +59,7 @@ public class IconPageIndicator extends FrameLayout implements PageIndicator {
         super(context, attrs);
         setHorizontalScrollBarEnabled(false);
 
-        mIconsLayout = new IcsLinearLayout(context, R.attr.vpiIconPageIndicatorStyle);
+        mIconsLayout = new IcsLinearLayout(context, R.attr.vpiIconPageIndicatorStyle3);
         addView(mIconsLayout, new LayoutParams(WRAP_CONTENT, FILL_PARENT, Gravity.CENTER));
 
         final ViewConfiguration configuration = ViewConfiguration.get(context);
@@ -127,7 +127,7 @@ public class IconPageIndicator extends FrameLayout implements PageIndicator {
         IconPagerAdapter iconAdapter = (IconPagerAdapter) mViewPager.getAdapter();
         int count = iconAdapter.getCount();
         for (int i = 0; i < count; i++) {
-            ImageView view = new ImageView(getContext(), null, R.attr.vpiIconPageIndicatorStyle);
+            ImageView view = new ImageView(getContext(), null, R.attr.vpiIconPageIndicatorStyle3);
             view.setImageResource(iconAdapter.getIconResId(i));
             mIconsLayout.addView(view);
         }
