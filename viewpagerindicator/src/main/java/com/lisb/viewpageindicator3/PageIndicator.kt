@@ -19,33 +19,35 @@ package com.lisb.viewpageindicator3
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.ViewConfiguration
-import android.view.ViewGroup
+import android.view.*
 import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import kotlin.math.abs
 
 /**
  * This widget implements the dynamic action bar tab behavior that can change
  * across different configurations or circumstances.
  */
-class IconPageIndicator
+class PageIndicator
 @JvmOverloads
-constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs),
-    PageIndicator {
+constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
     private val mIconsLayout: LinearLayout
-    private var mViewPager: ViewPager? = null
-    private var mListener: OnPageChangeListener? = null
-    private var mSelectedIndex = 0
+    private var mViewPagerDelegate: ViewPagerDelegate? = null
+    private var mIndicatorFactory: IndicatorFactory? = null
+    private var mSelectedPosition = 0
     private val mTouchSlop: Int
     private var mLastMotionX = -1f
     private var mActivePointerId = INVALID_POINTER
     private var mIsDragging = false
+    private val mOnPageSelectedListener = object : OnViewPagerChangeListener {
+        override fun onPageSelected(position: Int) {
+            setCurrentItem(position)
+        }
+
+        override fun onDataSetChanged() {
+            updateIndicators()
+        }
+    }
 
     init {
         isHorizontalScrollBarEnabled = false
@@ -61,55 +63,43 @@ constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context
         mTouchSlop = ViewConfiguration.get(context).scaledPagingTouchSlop
     }
 
-    override fun onPageScrollStateChanged(arg0: Int) {
-        mListener?.onPageScrollStateChanged(arg0)
+    fun setViewPager(
+        delegate: ViewPagerDelegate,
+        initialPosition: Int = mSelectedPosition,
+        indicatorFactory: IndicatorFactory
+    ) {
+        if (mViewPagerDelegate !== delegate || mIndicatorFactory !== indicatorFactory) {
+            mViewPagerDelegate?.removeOnViewPagerChangeListener(mOnPageSelectedListener)
+            mViewPagerDelegate = delegate
+            mIndicatorFactory = indicatorFactory
+            delegate.addOnViewPagerChangeListener(mOnPageSelectedListener)
+            updateIndicators()
+        }
+
+        if (initialPosition != mSelectedPosition) {
+            setCurrentItem(mSelectedPosition)
+        }
     }
 
-    override fun onPageScrolled(arg0: Int, arg1: Float, arg2: Int) {
-        mListener?.onPageScrolled(arg0, arg1, arg2)
-    }
-
-    override fun onPageSelected(arg0: Int) {
-        setCurrentItem(arg0)
-        mListener?.onPageSelected(arg0)
-    }
-
-    override fun setViewPager(view: ViewPager) {
-        if (mViewPager === view) return
-        mViewPager?.removeOnPageChangeListener(this)
-        if (view.adapter == null) throw IllegalStateException("ViewPager does not have adapter instance.")
-        mViewPager = view
-        view.addOnPageChangeListener(this)
-        notifyDataSetChanged()
-    }
-
-    override fun notifyDataSetChanged() {
+    private fun updateIndicators() {
         mIconsLayout.removeAllViews()
-        val viewPager = requireNotNull(mViewPager) { "ViewPager has not been bound." }
-        val adapter =
-            requireNotNull(viewPager.adapter) { "ViewPager does not have adapter instance." }
-        val iconAdapter = adapter as IconPagerAdapter
-        val count = iconAdapter.getCount()
-        for (i in 0 until count) {
-            val view = ImageView(context, null, R.attr.vpiIconPageIndicatorStyle3)
-            view.setImageResource(iconAdapter.getIconResId(i))
+        val viewPager = requireNotNull(mViewPagerDelegate) { "ViewPager has not been bound." }
+        val indicatorFactory = requireNotNull(mIndicatorFactory)
+        val inflater = LayoutInflater.from(context)
+        for (i in 0 until viewPager.pageCount) {
+            val view = indicatorFactory.createIndicator(inflater, mIconsLayout, i)
             mIconsLayout.addView(view)
         }
-        if (mSelectedIndex > count) {
-            mSelectedIndex = count - 1
+        if (mSelectedPosition > viewPager.pageCount) {
+            mSelectedPosition = viewPager.pageCount - 1
         }
-        setCurrentItem(mSelectedIndex)
+        setCurrentItem(mSelectedPosition)
         requestLayout()
     }
 
-    override fun setViewPager(view: ViewPager, initialPosition: Int) {
-        setViewPager(view)
-        setCurrentItem(initialPosition)
-    }
-
-    override fun setCurrentItem(item: Int) {
-        val viewPager = requireNotNull(mViewPager) { "ViewPager has not been bound." }
-        mSelectedIndex = item
+    private fun setCurrentItem(item: Int) {
+        val viewPager = requireNotNull(mViewPagerDelegate) { "ViewPager has not been bound." }
+        mSelectedPosition = item
         viewPager.currentItem = item
         val tabCount = mIconsLayout.childCount
         for (i in 0 until tabCount) {
@@ -119,19 +109,13 @@ constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context
         }
     }
 
-    override fun setOnPageChangeListener(listener: OnPageChangeListener?) {
-        mListener = listener
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         if (super.onTouchEvent(ev)) {
             return true
         }
-        val viewPager = mViewPager ?: return false
-        val adapter =
-            requireNotNull(viewPager.adapter) { "ViewPager does not have adapter instance." }
-        if (adapter.count == 0) return false
+        val viewPager = mViewPagerDelegate ?: return false
+        if (viewPager.pageCount == 0) return false
 
         when (val action = ev.action and MotionEvent.ACTION_MASK) {
             MotionEvent.ACTION_DOWN -> {
@@ -156,15 +140,14 @@ constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context
             }
             MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
                 if (!mIsDragging) {
-                    val count = adapter.count
-                    if (mSelectedIndex > 0 && ev.x < mIconsLayout.left) {
+                    if (mSelectedPosition > 0 && ev.x < mIconsLayout.left) {
                         if (action != MotionEvent.ACTION_CANCEL) {
-                            viewPager.currentItem = mSelectedIndex - 1
+                            viewPager.currentItem = mSelectedPosition - 1
                         }
                         return true
-                    } else if (mSelectedIndex < count - 1 && ev.x > mIconsLayout.right) {
+                    } else if (mSelectedPosition < viewPager.pageCount - 1 && ev.x > mIconsLayout.right) {
                         if (action != MotionEvent.ACTION_CANCEL) {
-                            viewPager.currentItem = mSelectedIndex + 1
+                            viewPager.currentItem = mSelectedPosition + 1
                         }
                         return true
                     } else {

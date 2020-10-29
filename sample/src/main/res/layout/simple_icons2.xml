@@ -20,13 +20,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         />
-    <com.lisb.viewpageindicator3.IconPageIndicator
+    <com.lisb.viewpageindicator3.PageIndicator
         android:id="@+id/indicator"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"

@@ -5,6 +5,9 @@ buildscript {
     ext.android_target_sdk_version = 29
     ext.android_compile_sdk_version = 29
     ext.android_build_tools_version = '29.0.3'
+    ext.publish_repository_url = 'https://maven.pkg.github.com/lisb/ViewPagerIndicator'
+    ext.publish_groupId = 'com.lisb.android.viewpagerindicator'
+    ext.publish_version = '3.0.0-SNAPSHOT'
 
     def localProps = new Properties()
     localProps.load(rootProject.file('local.properties').newDataInputStream())

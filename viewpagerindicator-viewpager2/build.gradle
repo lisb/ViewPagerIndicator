@@ -16,9 +16,9 @@ android {
 }
 
 dependencies {
-    api "androidx.viewpager:viewpager:1.0.0"
-    implementation "androidx.core:core-ktx:1.3.2"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api project(':viewpagerindicator')
+    api "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 checkstyle {
@@ -30,7 +30,7 @@ afterEvaluate {
         repositories {
             maven {
                 name = "GitHubPackages"
-                url = "https://maven.pkg.github.com/lisb/ViewPagerIndicator"
+                url = publish_repository_url
                 credentials {
                     username = gpr_user
                     password = gpr_password
@@ -40,13 +40,10 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.lisb.android.viewpagerindicator'
-                artifactId = 'viewpagerindicator3'
-                version = '3.0.0-SNAPSHOT'
+                groupId = publish_groupId
+                artifactId = 'viewpagerindicator3-viewpager2'
+                version = publish_version
             }
         }
     }
-}
-repositories {
-    mavenCentral()
 }

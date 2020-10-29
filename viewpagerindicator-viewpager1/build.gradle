@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+apply plugin: 'checkstyle'
+
+android {
+    compileSdkVersion android_compile_sdk_version
+    buildToolsVersion android_build_tools_version
+
+    defaultConfig {
+        minSdkVersion android_min_sdk_version
+        targetSdkVersion android_target_sdk_version
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    api project(':viewpagerindicator')
+    api "androidx.viewpager:viewpager:1.0.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+checkstyle {
+    configFile = new File(rootDir, 'checkstyle.xml')
+}
+
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = publish_repository_url
+                credentials {
+                    username = gpr_user
+                    password = gpr_password
+                }
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = publish_groupId
+                artifactId = 'viewpagerindicator3-viewpager1'
+                version = publish_version
+            }
+        }
+    }
+}

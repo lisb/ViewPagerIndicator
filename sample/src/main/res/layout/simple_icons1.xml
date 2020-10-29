@@ -14,16 +14,22 @@
      limitations under the License.
 -->
 
-<resources>
-    <style name="Theme.PageIndicatorDefaults3" parent="android:Theme">
-        <item name="vpiIconPageIndicatorStyle3">@style/Widget.IconPageIndicator3</item>
-    </style>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <style name="Widget">
-    </style>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <com.lisb.viewpageindicator3.PageIndicator
+        android:id="@+id/indicator"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        />
 
-    <style name="Widget.IconPageIndicator3" parent="Widget">
-        <item name="android:layout_marginLeft">6dp</item>
-        <item name="android:layout_marginRight">6dp</item>
-    </style>
-</resources>
+</LinearLayout>

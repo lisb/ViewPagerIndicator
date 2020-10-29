@@ -1,2 +1,4 @@
-include ':library'
+include ':viewpagerindicator'
+include ':viewpagerindicator-viewpager1'
+include ':viewpagerindicator-viewpager2'
 include ':sample'

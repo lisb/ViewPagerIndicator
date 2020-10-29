@@ -18,8 +18,18 @@
 
         <!-- ICON INDICATOR -->
         <activity
-            android:name="com.lisb.viewpageindicator3.sample.SampleIconsDefault"
-            android:label="Icons/Default">
+            android:name="com.lisb.viewpageindicator3.sample.SampleIconsDefault1"
+            android:label="Icons1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.jakewharton.android.viewpagerindicator.sample.SAMPLE" />
+            </intent-filter>
+        </activity>
+
+        <!-- ICON INDICATOR -->
+        <activity
+            android:name="com.lisb.viewpageindicator3.sample.SampleIconsDefault2"
+            android:label="Icons2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.jakewharton.android.viewpagerindicator.sample.SAMPLE" />
