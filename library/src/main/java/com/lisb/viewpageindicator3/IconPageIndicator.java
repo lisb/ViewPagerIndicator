@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewConfigurationCompat;
@@ -40,7 +41,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class IconPageIndicator extends FrameLayout implements PageIndicator {
     private static final int INVALID_POINTER = -1;
 
-    private final IcsLinearLayout mIconsLayout;
+    private final LinearLayout mIconsLayout;
 
     private ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mListener;
@@ -59,7 +60,7 @@ public class IconPageIndicator extends FrameLayout implements PageIndicator {
         super(context, attrs);
         setHorizontalScrollBarEnabled(false);
 
-        mIconsLayout = new IcsLinearLayout(context, R.attr.vpiIconPageIndicatorStyle3);
+        mIconsLayout = new LinearLayout(context);
         addView(mIconsLayout, new LayoutParams(WRAP_CONTENT, FILL_PARENT, Gravity.CENTER));
 
         final ViewConfiguration configuration = ViewConfiguration.get(context);
