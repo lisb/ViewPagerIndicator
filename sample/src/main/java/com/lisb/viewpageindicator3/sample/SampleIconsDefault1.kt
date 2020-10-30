@@ -6,7 +6,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager.widget.ViewPager
-import com.lisb.android.viewpageindicator3.viewpager1.ViewPagerDelegate1
+import com.lisb.android.viewpageindicator3.viewpager1.setViewPager
 import com.lisb.viewpageindicator3.PageIndicator
 import com.lisb.viewpageindicator3.ResourceIconIndicatorFactory
 import java.util.*
@@ -24,7 +24,7 @@ class SampleIconsDefault1 : FragmentActivity() {
         mPager = findViewById(R.id.pager)
         mPager.adapter = mAdapter
         mIndicator = findViewById(R.id.indicator)
-        mIndicator.setViewPager(delegate = ViewPagerDelegate1(mPager),
+        mIndicator.setViewPager(mPager,
             indicatorFactory = object : ResourceIconIndicatorFactory() {
                 override fun getIconResId(position: Int): Int {
                     return mAdapter.getIconResId(position)
