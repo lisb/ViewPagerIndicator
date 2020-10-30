@@ -10,10 +10,8 @@ class ViewPagerDelegate2(private val viewPager: ViewPager2) : ViewPagerDelegate 
     private val mOnViewPagerChangeListeners = ArrayList<OnViewPagerChangeListener>()
     private val adapter = requireNotNull(viewPager.adapter) { "ViewPager2 has no adapter" }
 
-    init {
-        viewPager.registerOnPageChangeCallback(OnPageChangeCallback())
-        adapter.registerAdapterDataObserver(AdapterDataObserver())
-    }
+    private val onPageChangeCallback = OnPageChangeCallback()
+    private val adapterDataObserver = AdapterDataObserver()
 
     override var currentItem: Int
         get() = viewPager.currentItem
@@ -39,12 +37,20 @@ class ViewPagerDelegate2(private val viewPager: ViewPager2) : ViewPagerDelegate 
 
     override fun addOnViewPagerChangeListener(l: OnViewPagerChangeListener) {
         ensureAdapterNotChanged()
+        if (mOnViewPagerChangeListeners.isEmpty()) {
+            viewPager.registerOnPageChangeCallback(onPageChangeCallback)
+            adapter.registerAdapterDataObserver(adapterDataObserver)
+        }
         mOnViewPagerChangeListeners.add(l)
     }
 
     override fun removeOnViewPagerChangeListener(l: OnViewPagerChangeListener) {
         ensureAdapterNotChanged()
         mOnViewPagerChangeListeners.remove(l)
+        if (mOnViewPagerChangeListeners.isEmpty()) {
+            viewPager.unregisterOnPageChangeCallback(onPageChangeCallback)
+            adapter.unregisterAdapterDataObserver(adapterDataObserver)
+        }
     }
 
     private fun ensureAdapterNotChanged() {
