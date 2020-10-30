@@ -65,7 +65,7 @@ constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context
 
     fun setViewPager(
         delegate: ViewPagerDelegate,
-        initialPosition: Int = mSelectedPosition,
+        initialPosition: Int = delegate.currentItem,
         indicatorFactory: IndicatorFactory
     ) {
         if (mViewPagerDelegate !== delegate || mIndicatorFactory !== indicatorFactory) {
