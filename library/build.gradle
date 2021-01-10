@@ -22,6 +22,11 @@ checkstyle {
     configFile = new File(rootDir, 'checkstyle.xml')
 }
 
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.source
+}
+
 afterEvaluate {
     publishing {
         repositories {
@@ -37,9 +42,10 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
+                artifact tasks.androidSourcesJar
                 groupId = 'com.lisb.android.viewpagerindicator'
                 artifactId = 'viewpagerindicator'
-                version = '2.4.4'
+                version = '2.4.5'
             }
         }
     }
