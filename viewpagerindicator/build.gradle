@@ -25,6 +25,11 @@ checkstyle {
     configFile = new File(rootDir, 'checkstyle.xml')
 }
 
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.source
+}
+
 afterEvaluate {
     publishing {
         repositories {
@@ -40,6 +45,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
+                artifact tasks.androidSourcesJar
                 groupId = publish_groupId
                 artifactId = 'viewpagerindicator3'
                 version = publish_version
